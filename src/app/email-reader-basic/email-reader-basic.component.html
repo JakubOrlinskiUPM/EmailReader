@@ -1,0 +1,43 @@
+<div>
+  <style>
+    form {
+      width: 50%;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+    }
+  </style>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="emailForm">
+    <label class="form-label">
+      From
+      <input type="email" class="form-control" formControlName="from">
+    </label>
+
+    <label class="form-label">
+      To
+      <input type="email" class="form-control" formControlName="to">
+    </label>
+
+    <label class="form-label">
+      Subject
+      <input type="text" class="form-control" formControlName="subject">
+    </label>
+
+    <label class="form-label">
+      Body
+      <textarea class="form-control" formControlName="body"></textarea>
+    </label>
+
+    <button type="submit" class="btn btn-info">Send!</button>
+  </form>
+
+  <div *ngIf="isSubmitted">
+      <div>From: {{ this.emailForm.get('from')?.value }}</div>
+      <div>To: {{ this.emailForm.get('to')?.value }}</div>
+      <div>Subject: {{ this.emailForm.get('subject')?.value }}</div>
+      <div>Body: {{ this.emailForm.get('body')?.value }}</div>
+  </div>
+</div>
