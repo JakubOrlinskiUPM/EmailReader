@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {Email} from "../interfaces/email";
 
 @Component({
   selector: 'app-email-reader-basic',
@@ -8,19 +8,24 @@ import {FormBuilder} from "@angular/forms";
 })
 export class EmailReaderBasicComponent implements OnInit {
 
-  isSubmitted = false;
-  emailForm = this.formBuilder.group({to: 'jake@email.com', from: 'jack@hotmail.net', subject: 'Re: Hello', body: 'Hi there!'});
+  email: Email;
 
-  constructor(
-    private formBuilder: FormBuilder,
-  ) { }
+  constructor() {
+    this.email = this.resetEmail();
+  }
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    this.isSubmitted = true
-    console.log("submitted", this.emailForm);
+  resetEmail(): Email {
+    return {to: "", from: "jakub.orlinski@alumnos.upm.es", body: "", subject: ""};
   }
 
+  clear() {
+    this.email = this.resetEmail();
+  }
+
+  send() {
+    window.alert(`The email ${this.email.subject} to ${this.email.to} has been sent!`)
+  }
 }

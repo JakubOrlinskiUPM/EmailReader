@@ -1,43 +1,35 @@
-<div>
-  <style>
-    form {
-      width: 50%;
-      margin: auto;
-    }
+<div class="col-6 m-auto">
+  <label class="form-label d-block">
+    From
+    <input type="email" class="form-control" [(ngModel)]="this.email.from" disabled>
+  </label>
 
-    label {
-      display: block;
-    }
-  </style>
+  <label class="form-label d-block">
+    To
+    <input appFocus type="email" class="form-control" [(ngModel)]="this.email.to">
+    <span *ngIf="!this.email.to" class="text-danger">This field is required</span>
+  </label>
 
-  <form (ngSubmit)="onSubmit()" [formGroup]="emailForm">
-    <label class="form-label">
-      From
-      <input type="email" class="form-control" formControlName="from">
-    </label>
+  <label class="form-label d-block">
+    Subject
+    <input appFocus type="text" class="form-control" [(ngModel)]="this.email.subject"
+           [ngClass]="this.email.subject.length > 50 ? 'bg-danger' : ''">
+  </label>
 
-    <label class="form-label">
-      To
-      <input type="email" class="form-control" formControlName="to">
-    </label>
+  <label class="form-label d-block">
+    Body
+    <textarea appFocus class="form-control" [(ngModel)]="this.email.body"></textarea>
+  </label>
 
-    <label class="form-label">
-      Subject
-      <input type="text" class="form-control" formControlName="subject">
-    </label>
+  <button type="button" class="btn btn-info" (click)="send()">Send</button>
+  <button type="button" class="btn btn-info mx-2" (click)="clear()">Clear</button>
 
-    <label class="form-label">
-      Body
-      <textarea class="form-control" formControlName="body"></textarea>
-    </label>
+  <br/>
 
-    <button type="submit" class="btn btn-info">Send!</button>
-  </form>
-
-  <div *ngIf="isSubmitted">
-      <div>From: {{ this.emailForm.get('from')?.value }}</div>
-      <div>To: {{ this.emailForm.get('to')?.value }}</div>
-      <div>Subject: {{ this.emailForm.get('subject')?.value }}</div>
-      <div>Body: {{ this.emailForm.get('body')?.value }}</div>
+  <div>
+    <div>From: {{ this.email.from }}</div>
+    <div>To: {{ this.email.to }}</div>
+    <div>Subject: {{ this.email.subject }}</div>
+    <div style="white-space: pre-wrap">Body: <br />{{ this.email.body }}</div>
   </div>
 </div>

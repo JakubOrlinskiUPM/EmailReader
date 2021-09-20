@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { EmailReaderBasicComponent } from './email-reader-basic/email-reader-basic.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FocusDirective } from './directives/focus.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmailReaderBasicComponent
+    EmailReaderBasicComponent,
+    FocusDirective
   ],
   imports: [
     BrowserModule,
