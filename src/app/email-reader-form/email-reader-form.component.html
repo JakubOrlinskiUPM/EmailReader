@@ -1,0 +1,76 @@
+<div class="col-6 m-auto">
+  <form (ngSubmit)="onSubmit()" #emailForm="ngForm">
+    <label class="form-label d-block">
+      From
+      <input type="email" class="form-control" [(ngModel)]="email.from" name="from" #from='ngModel' required
+             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+             [ngClass]="from.valid || from.pristine ? '' : 'bg-danger'">
+      <span *ngIf="from.errors?.required && from.dirty" class="text-danger">This field is required</span>
+      <span *ngIf="from.errors?.pattern && from.dirty" class="text-danger">This field has to be a valid email address</span>
+    </label>
+
+    <label class="form-label d-block">
+      To
+      <input type="email" class="form-control" [(ngModel)]="email.to" name="to" #to='ngModel' required
+             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+             [ngClass]="to.valid || to.pristine ? '' : 'bg-danger'">
+      <span *ngIf="to.errors?.required && to.dirty" class="text-danger">This field is required</span>
+      <span *ngIf="to.errors?.pattern && to.dirty" class="text-danger">This field has to be a valid email address</span>
+    </label>
+
+    <label class="form-label d-block">
+      Subject
+      <input type="text" class="form-control" [(ngModel)]="email.subject" name="subject" #subject='ngModel'
+             maxlength="50" minlength="1" required [ngClass]="subject.valid || subject.pristine ? '' : 'bg-danger'">
+      <span *ngIf="subject.errors?.required && subject.dirty" class="text-danger">This field is required</span>
+    </label>
+
+    <label class="form-label d-block">
+      Body
+      <textarea class="form-control" [(ngModel)]="email.body" name="body" #body='ngModel'></textarea>
+    </label>
+
+    <button type="submit" class="btn btn-info" [disabled]="!emailForm.form.valid">Send</button>
+    <button type="button" class="btn btn-info mx-2" (click)="clear()">Clear</button>
+  </form>
+
+  <br/>
+
+
+  <br/>
+  <br/>
+
+  <div>
+    <div>
+      <label>
+        Type in your search query:
+        <input type="text" placeholder="Search query" [(ngModel)]="searchQuery">
+      </label>
+    </div>
+    <div>
+      <label>
+        Only emails with a body
+        <input type="checkbox" [(ngModel)]="withBody">
+      </label>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <td>From</td>
+      <td>To</td>
+      <td>Subject</td>
+      <td>Body</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let mail of emailList | filter:searchQuery | withBody:withBody">
+      <td>{{ mail.from }}</td>
+      <td>{{ mail.to }}</td>
+      <td>{{ mail.subject }}</td>
+      <td>{{ mail.body }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
