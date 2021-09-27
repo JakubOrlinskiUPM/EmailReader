@@ -17,7 +17,7 @@ export class EmailReaderFormComponent implements OnInit {
   withBody: boolean = false;
 
   constructor() {
-    this.email = {to: "jake@email.com", from: "jake@email.com", body: "hello", subject: "Hi there!"};
+    this.email = {id: 1, to: "jake@email.com", from: "jake@email.com", body: "hello", subject: "Hi there!"};
     this.emailList = [];
   }
 

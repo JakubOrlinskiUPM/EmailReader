@@ -10,6 +10,9 @@ import { FocusDirective } from './directives/focus.directive';
 import { EmailReaderFormComponent } from './email-reader-form/email-reader-form.component';
 import { WithBodyPipe } from './pipes/with-body.pipe';
 import {Ng2SearchPipeModule} from "ng2-search-filter";
+import { EmailListComponent } from './email-list/email-list.component';
+import { EmailFormComponent } from './email-form/email-form.component';
+import { EmailViewerComponent } from './email-viewer/email-viewer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import {Ng2SearchPipeModule} from "ng2-search-filter";
     EmailReaderBasicComponent,
     FocusDirective,
     EmailReaderFormComponent,
-    WithBodyPipe
+    WithBodyPipe,
+    EmailListComponent,
+    EmailFormComponent,
+    EmailViewerComponent
   ],
     imports: [
         BrowserModule,

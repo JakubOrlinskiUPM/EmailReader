@@ -18,7 +18,7 @@ export class EmailReaderBasicComponent implements OnInit {
   }
 
   resetEmail(): Email {
-    return {to: "", from: "jakub.orlinski@alumnos.upm.es", body: "", subject: ""};
+    return {id: 0, to: "", from: "jakub.orlinski@alumnos.upm.es", body: "", subject: ""};
   }
 
   clear() {

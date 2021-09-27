@@ -1,0 +1,18 @@
+
+<div>
+  <div>
+    To: {{ email.to }}
+  </div>
+  <div>
+    From: {{ email.from }}
+  </div>
+  <div>
+    Subject: {{ email.subject }}
+  </div>
+  <p>
+    Body:<br/>
+    {{ email.body }}
+  </p>
+</div>
+
+<button [routerLink]="'/'" class="btn btn-dark">Go Back</button>

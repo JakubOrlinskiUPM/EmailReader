@@ -1,0 +1,46 @@
+<div>
+  <div>
+    <div>
+      <label>
+        Type in your search query:
+        <input type="text" placeholder="Search query" [(ngModel)]="searchQuery">
+      </label>
+    </div>
+    <div>
+      <label>
+        Only emails with a body
+        <input type="checkbox" class="btn" [(ngModel)]="withBody">
+      </label>
+    </div>
+  </div>
+
+  <br/>
+
+  <button (click)="createEmail()" class="btn btn-info">Add Email</button>
+
+  <br/>
+  <br/>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <td>From</td>
+      <td>To</td>
+      <td>Subject</td>
+      <td>Body</td>
+      <td></td>
+      <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let mail of emailService.getAllEmails() | filter:searchQuery | withBody:withBody">
+      <td>{{ mail.from }}</td>
+      <td>{{ mail.to }}</td>
+      <td>{{ mail.subject }}</td>
+      <td>{{ mail.body }}</td>
+      <td><button type="button" (click)="openEmail(mail)" class="btn btn-info">Open</button></td>
+      <td><button type="button" (click)="deleteEmail(mail)" class="btn btn-danger">Delete</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
